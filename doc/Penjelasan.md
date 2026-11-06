@@ -11,6 +11,7 @@ Website Jual Buku
 
 - UTSPO
 	- lib
+	- view
 	- db
 	- doc
 	- report
@@ -20,6 +21,8 @@ Website Jual Buku
 	- main.js
 
 *folder lib* untuk file js selain main.js
+
+*folder view* untuk file ejs
 
 *folder db* untuk menaruh database uang dibuat sqlite
 
