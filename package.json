@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "main.js",
   "type": "module",
+  "imports": {
+    "#*": "./*"
+  },
   "license": "BSD-2-Clause",
   "dependencies": {
     "@types/node": "^26",

@@ -19,6 +19,8 @@ Website Jual Buku
 	- package.json
 	- tsconfig.json
 	- main.js
+	- containerfile
+	- .containerignore
 
 *folder lib* untuk file js selain main.js
 
