@@ -1,0 +1,14 @@
+{
+  "name": "Toko Buku",
+  "version": "1.0.0",
+  "main": "main.js",
+  "type": "module",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "@types/node": "^26",
+    "ejs": "^3",
+    "express": "^4",
+    "sqlite3": "^6",
+    "typescript": "^7"
+  }
+}
