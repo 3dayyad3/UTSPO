@@ -8,10 +8,16 @@
   },
   "license": "BSD-2-Clause",
   "dependencies": {
-    "@types/node": "^26",
     "ejs": "^3",
     "express": "^4",
     "sqlite3": "^6",
     "typescript": "^7"
+  },
+  "devDependencies": {
+    "@types/node": "^26",
+    "@types/express": "^5"
+  },
+  "allowScripts": {
+    "sqlite3@6.0.1": true
   }
 }
