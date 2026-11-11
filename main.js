@@ -11,7 +11,6 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Setup Session untuk Login
 app.use(session({
     secret: 'rahasia-uts-devops-2026',
     resave: false,
