@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Database
+db/*.db
+db/*.sqlite
+db/*.sqlite3
+
+# Logs & Env
+*.log
+.env
+
+# OS / Editor
+.DS_Store
+.vscode/
