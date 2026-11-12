@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran Berhasil</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .card {
+            background: #ffffff;
+            padding: 50px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+        }
+        .icon-success {
+            font-size: 70px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+        p {
+            color: #7f8c8d;
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        .btn-home {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
+        }
+        .btn-home:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(52, 152, 219, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <span class="icon-success">✅</span>
+        <h1>Pembayaran Berhasil!</h1>
+        <p>Terima kasih, <strong><%= user.name %></strong>. Pesanan kamu telah diproses dan stok buku telah berhasil dikurangi.</p>
+        
+        <a href="/home" class="btn-home">Kembali ke Home</a>
+    </div>
+</body>
+</html>

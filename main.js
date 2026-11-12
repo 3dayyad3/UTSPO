@@ -145,8 +145,7 @@ app.post('/checkout', (req, res) => {
         } else {
             db.run("COMMIT");
             req.session.cart = [];
-            res.send("<h1>Pembayaran Berhasil!</h1><p>Stok buku telah dikurangi.</p><a href='/home'>Kembali ke Home</a>");
-        }
+res.render('success', { user: req.session.user });        }
     });
 });
 

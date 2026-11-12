@@ -2,49 +2,217 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Keranjang & Payment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keranjang & Payment - Toko Buku</title>
     <style>
-        body { font-family: sans-serif; padding: 20px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        th { background-color: #f2f2f2; }
-        .total-box { margin-top: 20px; padding: 15px; background: #e9ecef; border-radius: 5px; font-size: 18px; font-weight: bold;}
-        .btn { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; text-decoration: none;}
-        .btn-bayar { background: #28a745; }
+        /* --- Reset & Base Styles --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            padding: 40px 20px;
+        }
+
+        /* --- Container Utama --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- Header --- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 24px;
+            color: #2c3e50;
+        }
+        .header h1 span {
+            color: #3498db;
+            font-size: 18px;
+            font-weight: 400;
+        }
+        
+        .btn-back {
+            background-color: #ecf0f1;
+            color: #2c3e50;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .btn-back:hover {
+            background-color: #bdc3c7;
+        }
+
+        /* --- Tabel Modern --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        th {
+            background-color: #2c3e50;
+            color: #ffffff;
+            text-align: left;
+            padding: 15px;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        th:first-child { border-top-left-radius: 8px; }
+        th:last-child { border-top-right-radius: 8px; }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            font-size: 15px;
+            vertical-align: middle;
+        }
+        
+        tbody tr:nth-child(even) { background-color: #f9fbfb; }
+        tbody tr:hover { background-color: #f1f5f9; transition: background-color 0.2s ease; }
+
+        /* --- Total & Checkout Area --- */
+        .checkout-section {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 30px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px dashed #eee;
+        }
+
+        .total-box {
+            text-align: right;
+        }
+        .total-box p {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+        .total-box h3 {
+            font-size: 28px;
+            color: #2c3e50;
+            font-weight: 700;
+        }
+
+        .btn-bayar {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(46, 204, 113, 0.3);
+        }
+        .btn-bayar:hover {
+            background-color: #27ae60;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(46, 204, 113, 0.4);
+        }
+
+        /* --- Empty State (Keranjang Kosong) --- */
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+            color: #7f8c8d;
+        }
+        .empty-cart .icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        .empty-cart h2 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .empty-cart p {
+            margin-bottom: 25px;
+        }
+        .btn-shop {
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .btn-shop:hover { background-color: #2980b9; }
     </style>
 </head>
 <body>
-    <h1>Keranjang Belanja (<%= user.name %>)</h1>
-    <a href="/home" class="btn">&larr; Kembali Belanja</a>
-    
-    <% if (cart.length === 0) { %>
-        <p style="margin-top: 20px;">Keranjang kamu masih kosong.</p>
-    <% } else { %>
-        <table>
-            <tr>
-                <th>Judul Buku</th>
-                <th>Harga Satuan</th>
-                <th>Jumlah</th>
-                <th>Subtotal</th>
-            </tr>
-            <% cart.forEach(item => { %>
-                <tr>
-                    <td><%= item.title %></td>
-                    <td>Rp <%= item.price %></td>
-                    <td><%= item.qty %></td>
-                    <td>Rp <%= item.price * item.qty %></td>
-                </tr>
-            <% }) %>
-        </table>
-
-        <div class="total-box">
-            Total Pembayaran: Rp <%= total %>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🛒 Keranjang Belanja <br><span>Pemilik: <%= user.name %></span></h1>
+            <a href="/home" class="btn-back">⬅️ Kembali Belanja</a>
         </div>
+        
+        <% if (cart.length === 0) { %>
+            <!-- Tampilan Jika Keranjang Kosong -->
+            <div class="empty-cart">
+                <span class="icon">🛒</span>
+                <h2>Keranjang Kamu Masih Kosong</h2>
+                <p>Sepertinya kamu belum menambahkan buku apa pun.</p>
+                <a href="/home" class="btn-shop">Mulai Belanja</a>
+            </div>
+        <% } else { %>
+            <!-- Tabel Keranjang -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Judul Buku</th>
+                        <th>Harga Satuan</th>
+                        <th>Jumlah</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% cart.forEach(item => { %>
+                        <tr>
+                            <td><strong><%= item.title %></strong></td>
+                            <td>Rp <%= item.price.toLocaleString('id-ID') %></td>
+                            <td><%= item.qty %> pcs</td>
+                            <td><strong>Rp <%= (item.price * item.qty).toLocaleString('id-ID') %></strong></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
 
-        <br>
-        <form action="/checkout" method="POST">
-            <button type="submit" class="btn btn-bayar">Bayar Sekarang</button>
-        </form>
-    <% } %>
+            <!-- Area Pembayaran -->
+            <div class="checkout-section">
+                <div class="total-box">
+                    <p>Total Pembayaran</p>
+                    <h3>Rp <%= total.toLocaleString('id-ID') %></h3>
+                </div>
+                <form action="/checkout" method="POST">
+                    <button type="submit" class="btn-bayar">Bayar Sekarang 💳</button>
+                </form>
+            </div>
+        <% } %>
+    </div>
 </body>
 </html>
