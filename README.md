@@ -4,9 +4,9 @@ Proyek ini dibuat untuk memenuhi Ujian Tengah Semester (UTS) mata kuliah Pengemb
 
 ## 👥 Anggota Kelompok
 1. Day Ren Meinhard - 241111754
-2. [Nama Anggota 2] - [NIM]
-3. [Nama Anggota 3] - [NIM]
-4. [Nama Anggota 4] - [NIM] *(Hapus jika hanya 3 orang)*
+2. Gerald Wonder Nitehe Harefa - 241112781
+3. Edy Berkat Waruwu - 241111891
+4. Arlen Otnielvi Bu'ulolo - 241112312
 
 ---
 
