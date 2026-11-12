@@ -10,7 +10,7 @@ db/*.sqlite3
 
 # Logs & Env
 *.log
-.env
+*.env
 
 # OS / Editor
 .DS_Store
