@@ -3,7 +3,7 @@
 Proyek ini dibuat untuk memenuhi Ujian Tengah Semester (UTS) mata kuliah Pengembangan dan Operasi. Aplikasi ini adalah sebuah website toko buku sederhana yang mendemonstrasikan implementasi aplikasi web *monolithic* yang di-*containerize* menggunakan **Podman**.
 
 ## 👥 Anggota Kelompok
-1. [Nama Anggota 1] - [NIM]
+1. Day Ren Meinhard - 241111754
 2. [Nama Anggota 2] - [NIM]
 3. [Nama Anggota 3] - [NIM]
 4. [Nama Anggota 4] - [NIM] *(Hapus jika hanya 3 orang)*
@@ -40,3 +40,14 @@ Aplikasi ini menggunakan arsitektur **Monolithic** (satu kesatuan aplikasi) deng
 2. Instal semua dependensi:
    ```bash
    npm install
+
+### Opsi B: Membuat Container Image dan Jalankan
+1. Buka terminal dan masuk ke direktori proyek.
+2. Membuat Image:
+   ```bash
+   podman machine start
+   podman build -t utspo:<tag> .
+3. Menjalankan Image:
+   ```bash
+   podman machine start
+   podman run -p <host_port>:3000 utspo:<tag>
