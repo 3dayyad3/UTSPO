@@ -45,9 +45,7 @@ Aplikasi ini menggunakan arsitektur **Monolithic** (satu kesatuan aplikasi) deng
 1. Buka terminal dan masuk ke direktori proyek.
 2. Membuat Image:
    ```bash
-   podman machine start
    podman build -t utspo:<tag> .
 3. Menjalankan Image:
    ```bash
-   podman machine start
    podman run -p <host_port>:3000 utspo:<tag>
