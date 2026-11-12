@@ -56,8 +56,9 @@ Karena aplikasi menggunakan database SQLite (Stateful), kita wajib me-mount fold
    ```bash
    docker run -d --name app-toko -p 3000:3000 -e PORT=3000 -v "${PWD}/db:/app/db" toko-buku:v1
 3. Akses Aplikasi:
+Buka browser dan akses.
    ```bash
-   Buka browser dan akses http://localhost:3000.
+   http://localhost:3000
 
 ---
 
