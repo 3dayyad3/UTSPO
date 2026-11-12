@@ -49,3 +49,7 @@ Aplikasi ini menggunakan arsitektur **Monolithic** (satu kesatuan aplikasi) deng
 3. Menjalankan Image:
    ```bash
    podman run -p <host_port>:3000 utspo:<tag>
+
+## 3. Lainnya
+
+Penjelasan Proyek lebih detail dapat dilihat di [penjelasan](/doc/Penjelasan.md)

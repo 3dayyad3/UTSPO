@@ -17,7 +17,6 @@ Website Jual Buku
 	- report
 	- README.md
 	- package.json
-	- tsconfig.json
 	- main.js
 	- containerfile
 	- .containerignore
@@ -26,7 +25,7 @@ Website Jual Buku
 
 *folder view* untuk file ejs
 
-*folder db* untuk menaruh database uang dibuat sqlite
+*folder db* untuk menaruh database yang dibuat sqlite
 
 *folder doc* untuk file md selain README.md
 
@@ -111,8 +110,3 @@ Menapilkan total harga semua buku dalam keranjang dan dapat melakukan penbayaran
 # Deploy
 
 Jalankan server dengan podman dan dapat diakses melalui localhost.
-
-
-# Laporan
-
-otw
