@@ -7,12 +7,14 @@ ENV PORT=3000
 ENV DB_PATH=/app/db/toko.db
 
 WORKDIR /app
-RUN mkdir -p /app/db
+RUN mkdir -p ./db
 
 COPY package*.json ./
 RUN npm i --omit dev
 
-COPY . .
+COPY lib ./lib/
+COPY view ./view/
+COPY main.js ./
 
 RUN chown -R appuser:appgroup /app
 USER appuser
