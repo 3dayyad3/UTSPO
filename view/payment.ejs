@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Keranjang & Payment</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .total-box { margin-top: 20px; padding: 15px; background: #e9ecef; border-radius: 5px; font-size: 18px; font-weight: bold;}
+        .btn { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; text-decoration: none;}
+        .btn-bayar { background: #28a745; }
+    </style>
+</head>
+<body>
+    <h1>Keranjang Belanja (<%= user.name %>)</h1>
+    <a href="/home" class="btn">&larr; Kembali Belanja</a>
+    
+    <% if (cart.length === 0) { %>
+        <p style="margin-top: 20px;">Keranjang kamu masih kosong.</p>
+    <% } else { %>
+        <table>
+            <tr>
+                <th>Judul Buku</th>
+                <th>Harga Satuan</th>
+                <th>Jumlah</th>
+                <th>Subtotal</th>
+            </tr>
+            <% cart.forEach(item => { %>
+                <tr>
+                    <td><%= item.title %></td>
+                    <td>Rp <%= item.price %></td>
+                    <td><%= item.qty %></td>
+                    <td>Rp <%= item.price * item.qty %></td>
+                </tr>
+            <% }) %>
+        </table>
+
+        <div class="total-box">
+            Total Pembayaran: Rp <%= total %>
+        </div>
+
+        <br>
+        <form action="/checkout" method="POST">
+            <button type="submit" class="btn btn-bayar">Bayar Sekarang</button>
+        </form>
+    <% } %>
+</body>
+</html>
