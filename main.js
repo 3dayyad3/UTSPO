@@ -40,7 +40,6 @@ app.post('/login', (req, res) => {
     });
 });
 
-
 app.get('/home', (req, res) => {
     if (!req.session.user) return res.redirect('/');
     db.all("SELECT * FROM books", [], (err, books) => {
@@ -68,7 +67,7 @@ app.post('/cart', (req, res) => {
         if (err || !book) return res.status(404).send("Buku tidak ditemukan");
 
         if (quantity > book.amount || quantity <= 0) {
-            return res.send("Jumlah tidak valid atau melebihi stok!");
+            return res.send(`<script>alert("Maaf, jumlah yang dimasukkan melebihi stok yang tersedia (Sisa stok: ${book.amount})!"); window.location.href = "/home";</script>`);
         }
 
         if (!req.session.cart) {
@@ -79,7 +78,7 @@ app.post('/cart', (req, res) => {
 
         if (existingItem) {
             if (existingItem.qty + quantity > book.amount) {
-                return res.send("Total jumlah di keranjang melebihi stok!");
+                return res.send(`<script>alert("Maaf, total buku di keranjang melebihi kapasitas stok yang tersedia (Sisa stok: ${book.amount})!"); window.location.href = "/home";</script>`);
             }
             existingItem.qty += quantity;
         } else {
@@ -90,7 +89,7 @@ app.post('/cart', (req, res) => {
                 qty: quantity
             });
         }
-
+     
         res.redirect('/payment');
     });
 });
@@ -110,6 +109,18 @@ app.get('/payment', (req, res) => {
         cart: cart,
         total: total
     });
+});
+
+app.post('/cart/delete', (req, res) => {
+    if (!req.session.user) return res.redirect('/');
+
+    const bookId = parseInt(req.body.bookId);
+
+    if (req.session.cart && !isNaN(bookId)) {
+        req.session.cart = req.session.cart.filter(item => item.bookId !== bookId);
+    }
+
+    res.redirect('/payment');
 });
 
 app.post('/checkout', (req, res) => {
@@ -145,7 +156,8 @@ app.post('/checkout', (req, res) => {
         } else {
             db.run("COMMIT");
             req.session.cart = [];
-res.render('success', { user: req.session.user });        }
+            res.render('success', { user: req.session.user });
+        }
     });
 });
 

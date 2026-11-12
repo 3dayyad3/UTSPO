@@ -90,6 +90,23 @@
         tbody tr:nth-child(even) { background-color: #f9fbfb; }
         tbody tr:hover { background-color: #f1f5f9; transition: background-color 0.2s ease; }
 
+        /* --- Tombol Hapus Item --- */
+        .btn-hapus {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-hapus:hover {
+            background-color: #c0392b;
+            transform: translateY(-1px);
+        }
+
         /* --- Total & Checkout Area --- */
         .checkout-section {
             display: flex;
@@ -188,6 +205,7 @@
                         <th>Harga Satuan</th>
                         <th>Jumlah</th>
                         <th>Subtotal</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -197,6 +215,12 @@
                             <td>Rp <%= item.price.toLocaleString('id-ID') %></td>
                             <td><%= item.qty %> pcs</td>
                             <td><strong>Rp <%= (item.price * item.qty).toLocaleString('id-ID') %></strong></td>
+                            <td>
+                                <form action="/cart/delete" method="POST" style="margin: 0;">
+                                    <input type="hidden" name="bookId" value="<%= item.bookId %>">
+                                    <button type="submit" class="btn-hapus">🗑️ Hapus</button>
+                                </form>
+                            </td>
                         </tr>
                     <% }) %>
                 </tbody>
